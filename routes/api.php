@@ -16,8 +16,11 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::middleware(['api'])->group(function () {
+    // authentication routes
     Route::post('register', [AuthController::class, 'register']);
     Route::post('login', [AuthController::class, 'login']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('logout', [AuthController::class, 'logout']);
+
+    /***********/
 });
