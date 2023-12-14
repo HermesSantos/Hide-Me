@@ -24,6 +24,7 @@ Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 /***********/
 Route::middleware('jwt.auth')->group(function () {
-    Route::post('get-user-events', [UserEventController::class, 'getUserEvents']);
+    Route::get('get-owner-events', [UserEventController::class, 'getOwnerEvents']);
+    Route::post('vinculate-user', [UserEventController::class, 'vinculateUser']);
     Route::post('create-user-event', [UserEventController::class, 'createEvent']);
 });

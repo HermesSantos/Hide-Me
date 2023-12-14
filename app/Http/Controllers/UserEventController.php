@@ -34,4 +34,24 @@ class UserEventController extends Controller
             );
         }
     }
+
+    function vinculateUser(Request $request)
+    {
+        $data = $request->all();
+        DB::table('user_events')
+            ->insert([
+                'user_id' => Auth::id(),
+                'event_id' => $data['event_id'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+    }
+
+    function getOwnerEvents()
+    {
+        $events = DB::table('events')
+            ->where('user_id', Auth::id())
+            ->get();
+        return response()->json($events, 200);
+    }
 }
